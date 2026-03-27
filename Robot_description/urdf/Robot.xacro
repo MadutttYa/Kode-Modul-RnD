@@ -1,0 +1,84 @@
+<?xml version="1.0" ?>
+<robot name="Robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find Robot_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find Robot_description)/urdf/Robot.trans" />
+<xacro:include filename="$(find Robot_description)/urdf/Robot.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="-0.0008153495925090309 1.7245435006067757e-17 0.036112107040624" rpy="0 0 0"/>
+    <mass value="3.1115589363633087"/>
+    <inertia ixx="0.005791" iyy="0.008332" izz="0.013245" ixy="0.0" iyz="0.0" ixz="3e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Robot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Robot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Right_Wheel_1">
+  <inertial>
+    <origin xyz="7.336881286106933e-18 0.010000367047189873 1.3877787807814457e-17" rpy="0 0 0"/>
+    <mass value="0.07205293022889041"/>
+    <inertia ixx="2.5e-05" iyy="4.4e-05" izz="2.5e-05" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.078227 -0.036" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Robot_description/meshes/Right_Wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.078227 -0.036" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Robot_description/meshes/Right_Wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Left_Wheel_1">
+  <inertial>
+    <origin xyz="7.336881286106933e-18 -0.010000367047189873 1.3877787807814457e-17" rpy="0 0 0"/>
+    <mass value="0.07205293022889041"/>
+    <inertia ixx="2.5e-05" iyy="4.4e-05" izz="2.5e-05" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 0.078227 -0.036" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Robot_description/meshes/Left_Wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 0.078227 -0.036" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Robot_description/meshes/Left_Wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Revolute 5" type="continuous">
+  <origin xyz="0.0 0.078227 0.036" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="Right_Wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="Revolute 6" type="continuous">
+  <origin xyz="0.0 -0.078227 0.036" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="Left_Wheel_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+</robot>
